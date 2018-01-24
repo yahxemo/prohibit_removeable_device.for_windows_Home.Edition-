@@ -7,19 +7,19 @@
 
 int RegFind()
 {
-	HKEY hkey;///
+	HKEY hkey;///param
 	long regreturn;///get return values
-	regreturn = RegOpenKeyExA(HKEY_LOCAL_MACHINE, Address, 0, KEY_ALL_ACCESS, &hkey);//打开注册表
+	regreturn = RegOpenKeyExA(HKEY_LOCAL_MACHINE, Address, 0, KEY_ALL_ACCESS, &hkey);//openkey
 
-	JudgeOpen(regreturn);
+	CheckOpen(regreturn);//check open
 
-	DWORD dataType;///
-	DWORD dataSize;
-	unsigned char data[4];
-	memset(data, 0, 4);
-	regreturn = 0;///
+	DWORD dataType;///param
+	DWORD dataSize;///
+	unsigned char data[4];///
+	memset(data, 0, 4);///
+	regreturn = 0;///param
 
-	regreturn = RegQueryValueExA(hkey, "Start", NULL, &dataType, data, &dataSize);	//查询键值
+	regreturn = RegQueryValueExA(hkey, "Start", NULL, &dataType, data, &dataSize);	//research key value
 
 	if (regreturn != ERROR_SUCCESS)
 	{
@@ -63,16 +63,16 @@ int RegSet(int in)
 
 {
 	in = in + 3;
-	HKEY hkey;///
+	HKEY hkey;///param
 	long regreturn;///get return values
 	regreturn = RegOpenKeyExA(HKEY_LOCAL_MACHINE, Address, 0, KEY_ALL_ACCESS, &hkey);//打开注册表
 
-	JudgeOpen(regreturn);
+	CheckOpen(regreturn);//check open
 
-	DWORD dataSize = sizeof(DWORD);///
-	unsigned char data[5];
-	memset(data, 0, 4);
-	data[0] = in;///
+	DWORD dataSize = sizeof(DWORD);///param
+	unsigned char data[5];///
+	memset(data, 0, 4);///
+	data[0] = in;///param
 	regreturn = RegSetValueExA(hkey, "Start", 0, REG_DWORD, (BYTE*)data, dataSize);
 
 	if (regreturn != ERROR_SUCCESS)
@@ -86,9 +86,9 @@ int RegSet(int in)
 	return 0;
 }
 
-int JudgeOpen(int regreturn)
+int CheckOpen(int regreturn)
 {
-	if (regreturn != ERROR_SUCCESS)//检测是否打开注册表路径
+	if (regreturn != ERROR_SUCCESS)//check the regedit key is open 
 	{
 		printf("	(出现异常)abnormal\n(返回代码为)error num:%d\n\n", regreturn);
 	}
@@ -98,10 +98,10 @@ int JudgeOpen(int regreturn)
 
 int main()
 {
-	printf("																						__amu__\n\n");
-	RegFind();//找到键值
-	int a=InPut();
-	RegSet(a);//设置键值
+	printf("\t\t\t\t\t\t\t\t\t\t\t__amu__\n\n");
+	RegFind();//find regedit key,and open
+	int a=InPut();//input number
+	RegSet(a);//set regedit key value
 	system("pause");
 	return 0;
 }
