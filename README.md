@@ -1,1 +1,1 @@
-# prohibit-removeable-device-for-windows-Home-edition-
+# prohibit removeable device (for windows Home edition)
