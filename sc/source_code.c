@@ -7,8 +7,8 @@
 
 int RegFind()
 {
-	HKEY hkey;
-	long regreturn;//获取函数的返回值
+	HKEY hkey;///
+	long regreturn;///get return values
 	regreturn = RegOpenKeyExA(HKEY_LOCAL_MACHINE, Address, 0, KEY_ALL_ACCESS, &hkey);//打开注册表
 
 	JudgeOpen(regreturn);
@@ -40,7 +40,7 @@ int RegFind()
 
 int InPut()
 {
-	int num;//输入操作
+	int num;//receive input num
 
 	while (1)
 	{
@@ -64,7 +64,7 @@ int RegSet(int in)
 {
 	in = in + 3;
 	HKEY hkey;///
-	long regreturn;///获取函数的返回值
+	long regreturn;///get return values
 	regreturn = RegOpenKeyExA(HKEY_LOCAL_MACHINE, Address, 0, KEY_ALL_ACCESS, &hkey);//打开注册表
 
 	JudgeOpen(regreturn);
